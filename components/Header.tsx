@@ -11,13 +11,12 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 
 const pages = ['Nike', 'Adidas', 'Under Armour'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function Header() {
-    const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
+  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -36,33 +35,37 @@ function Header() {
   };
 
   return (
-    
     <AppBar position="static" sx={{ bgcolor: "white" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <div className='flex justify-center text-align'>
-            <img 
-              src='https://cdn.pixabay.com/photo/2014/04/02/10/39/shoes-304158_960_720.png' 
-              alt='Image not found'
-              className='h-10 w-13 px-3 xs:hidden' 
-            />
-            <Typography
-              variant="h6"
-              noWrap
-              component="a"
-              href="/"
-              sx={{
-                mr: 2,
-                display: { xs: 'none', md: 'flex' },
-                fontFamily: 'monospace',
-                fontWeight: 700,
-                color: 'black',
-                textDecoration: 'none',
-              }}
-            >
-              SneakersRUs
-            </Typography>
-          </div>
+          <Box 
+            component="img"
+            sx={{
+              display: {xs: "none", md: "flex"},
+              mr: 1.5,
+              width: {md: "4.5rem"},
+              height: {md: "3.5rem"},
+            }}
+            src='https://cdn.pixabay.com/photo/2014/04/02/10/39/shoes-304158_960_720.png' 
+            alt='Image not found' 
+          />
+          <Typography
+            variant="h5"
+            noWrap
+            component="a"
+            href="/"
+            sx={{
+              mr: 2,
+              display: { xs: 'none', md: 'flex' },
+              fontFamily: '"Apple Color Emoji"',
+              letterSpacing: '0.2rem',
+              fontWeight: 700,
+              color: 'black',
+              textDecoration: 'none',
+            }}
+          >
+            Kicks
+          </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
@@ -95,19 +98,30 @@ function Header() {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <Typography 
+                  textAlign="center"
+                  sx={{ 
+                    fontWeight: 10000,
+                   }}
+                   >
+                    {page}
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-          {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1, color: 'gray' }} />
-          <img 
-            src='https://cdn.pixabay.com/photo/2014/04/02/10/39/shoes-304158_960_720.png' 
-            alt='Image not found'
-            className='flex h-10 w-13 px-3 md:hidden'
-            //TODO: FIND WAY TO MAKE IMAGE HIDDEN AT CERTAIN SCREEN BREAKPOINTS 
-          /> */}
 
+          <Box 
+            component="img"
+            sx={{
+              display: {xs: "flex", sm:"flex", md: "none"},
+              mr: {xs: 0.2, sm: 0.5},
+              width: {xs: "2.5rem", sm: "3.5rem"},
+              height: {xs: "2rem", sm: "3rem"},
+            }}
+            src='https://cdn.pixabay.com/photo/2014/04/02/10/39/shoes-304158_960_720.png' 
+            alt='Image not found' 
+          />
           <Typography
             variant="h5"
             noWrap
@@ -115,17 +129,18 @@ function Header() {
             href=""
             sx={{
               mr: 2,
-              display: { xs: 'flex', md: 'none' },
+              display: { xs: 'flex', sm: 'flex', md: 'none' },
               flexGrow: 1,
-              fontFamily: 'monospace',
+              fontFamily: '"Apple Color Emoji"',
+              letterSpacing: {xs: '0.1rem', sm: '0.2rem'},
               fontWeight: 700,
+              fontSize:{ xs: '1rem', sm: '1.5rem'},
               color: 'black',
               textDecoration: 'none',
             }}
           >
-            SneakersRUs
+            Kicks
           </Typography>
-
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
@@ -133,7 +148,7 @@ function Header() {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'black', display: 'block' }}
               >
-                {page}
+               {page}
               </Button>
             ))}
           </Box>
@@ -160,8 +175,6 @@ function Header() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {/* //TODO: DECIDE WHETHER HAVING A SETTINGS PART OF THINGS IS NECESSARY IF YOU'RE GOING TO
-              EXPAND LANGIND PAGE PROJECT TO HAVE ECOMMERCE FUNCTIONALITY AND ABILITY TO LOGIN? */}
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">{setting}</Typography>
@@ -173,6 +186,5 @@ function Header() {
       </Container>
     </AppBar>
   );
-};
-
-export default Header
+}
+export default Header;
